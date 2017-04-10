@@ -9,8 +9,8 @@ Make sure your application has access to the resources you intend to use.  You g
 [doAzureParallel](https://github.com/Azure/doAzureParallel)  
 
 ## Packages used
-- AzureSMR
-- doAzureParallel
+- [AzureSMR](https://github.com/Microsoft/AzureSMR)
+- [doAzureParallel](https://github.com/Azure/doAzureParallel)
 - httr
 - data.table
 - readr
