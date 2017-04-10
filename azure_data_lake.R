@@ -19,7 +19,7 @@ resp <- POST(paste0(base_url, "/token"), body = list(grant_type = "client_creden
 access_token = content(resp)$access_token
 
 # Header with authentication information
-header <- add_headers(Authorization = paste0("Bearer ", access_token))
+headers <- add_headers(Authorization = paste0("Bearer ", access_token))
   
 base_adls_url <- paste0(adls$url, "/webhdfs/v1")
 
@@ -32,14 +32,14 @@ file_path <- gsub("\\\\", "/", file_path)
 resp <- PUT(paste0(base_adls_url, file_path),
             query = list(op = "CREATE", write = "true", overwrite = "true"),
             body = format_csv(cars),
-            header)
+            headers)
 
-resp <- GET(paste0(base_adls_url, file_path), query = list(op = "OPEN"), header)
+resp <- GET(paste0(base_adls_url, file_path), query = list(op = "OPEN"), headers)
 
 df <- content(resp, "parsed", type = "text/csv" )
 
 df
 
 # Deletes the resource from ADLS
-resp <- DELETE(paste0(base_adls_url, file_path), query = list(op = "DELETE"), header)
+resp <- DELETE(paste0(base_adls_url, file_path), query = list(op = "DELETE"), headers)
 
