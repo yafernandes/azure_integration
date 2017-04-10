@@ -29,7 +29,15 @@ myFunction <- function(df) {
 }
 
 snapshot_id <- createSnapshot("myFunction")
-myWS <- publishService("myWS", code = myFunction, inputs = list(input = "data.frame"), output = list(result = "vector"), v = "v1.0.0", snapshot = snapshot_id)
+service_name <- "myWS"
+service_version <- "v1.0.0"
+myWS <- publishService(service_name,
+                       code = myFunction,
+                       inputs = list(input = "data.frame"),
+                       output = list(result = "vector"),
+                       v = service_version,
+                       snapshot = snapshot_id
+                      )
 
 library(httr)
 library(jsonlite)
@@ -50,11 +58,8 @@ resp <- POST(myWS_url, body = body, add_headers(.headers = headers))
 fromJSON(content(resp, as="text"))$outputParameters
 
 # Clean up
-for(snapshot in listSnapshots()) deleteSnapshot(snapshot$id)
-listSnapshots()
-
-for(service in listServices()) deleteService(service$name, service$version)
-listServices()
+deleteSnapshot(snapshot_id)
+deleteService(service_name, service_version)
 
 remoteLogout()
 azureStopVM(sc, vmName = mrs$vm_name)
