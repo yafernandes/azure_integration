@@ -7,9 +7,7 @@ source("set_environment.R")
 
 azureStartVM(sc, vmName = mrs$vm_name)
 
-remoteLogin(deployr_endpoint = mrs$endpoint, username = mrs$user, password = mrs$password, diff = FALSE)
-
-pause()
+remoteLogin(deployr_endpoint = mrs$endpoint, username = mrs$user, password = mrs$password, diff = FALSE, commandline = FALSE)
 
 library(randomForest)
 
