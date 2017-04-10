@@ -1,0 +1,6 @@
+id	text
+str01	Hoje esta um lindo dia.
+str02	Today is a beautiful day.
+str03	Heute ist dieser schöne Tag.
+str04	Hoy es un hermoso día.
+str05	Aujourd'hui, cette belle journée.
