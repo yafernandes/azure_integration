@@ -1,11 +1,21 @@
 # R and Azure
 
+Make sure your application has access to the resources you intend to use.  You grant access from within the resource, resource group, or subscription that is the scope of the role assignment.  
+
+## Usefull links
 [Getting Started with Azure API](https://docs.microsoft.com/en-us/rest/api/)  
 [Quickstart Guide for httr](https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html)  
+[Azure SMR](https://github.com/Microsoft/AzureSMR)  
+[doAzureParallel](https://github.com/Azure/doAzureParallel)  
 
-Make sure your application has access to the resources your intend to use.  You grant access from within the resource, resource group, or subscription that is the scope of the role assignment.  
+## Packages used
+- AzureSMR
+- doAzureParallel
+- httr
+- data.table
+- readr
 
-# FAQ
+## FAQ
 
 * **How to create an application ID and secret?**  
   When you have an application that needs to access or modify resources, you must set up an Active Directory (AD) application and assign the required permissions to it. This approach is preferable to running the app under your own credentials.  [Use portal to create Active Directory application and service principal that can access resources](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)  Do not forget to assign the 
