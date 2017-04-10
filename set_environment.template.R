@@ -28,7 +28,14 @@ sc <- createAzureContext(tenantID = tenant$id, clientID = app$id, authKey = app$
 
 setAzureContext(sc, resourceGroup = "<REDACTED>")
 setAzureContext(sc, subscriptionID = "<REDACTED>")
-setAzureContext(sc, storageAccount = "<REDACTED>", storageKey = azureSAGetKey(sc, "<REDACTED>"))
+.storageKey <- azureSAGetKey(sc, "<REDACTED>")
+if (is.null(.storageKey)) {
+  warning("We were not able to retrieve a key for your storage account.  Please check if the application has the rights permissions setup.")
+} else {
+  setAzureContext(sc, storageAccount = "<REDACTED>", storageKey = .storageKey)
+}
+rm(.storageKey)
+setAzureContext(sc, storageAccount = "<REDACTED>", storageKey = storageKey)
 setAzureContext(sc, container = "<REDACTED>")
 
 #########################
