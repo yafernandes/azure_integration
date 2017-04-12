@@ -16,7 +16,7 @@ generateClusterConfig("files/pool_config.json")
 # Enter your Azure Batch Account & Azure Storage keys/account-info and configure your pool settings.
 
 # 3. Register the pool. This will create a new pool if your pool hasn't already been provisioned.
-pool <- makeCluster("azure_integration/files/pool_config.json")
+pool <- makeCluster("files/pool_config.json")
 
 # 4. Register the pool as your parallel backend
 registerDoAzureParallel(pool)
