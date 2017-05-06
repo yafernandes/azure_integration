@@ -20,7 +20,7 @@ imageFile <- "files/invoice.jpg"
 resp <- POST(paste0(computer_vision$endpoint, "/ocr"), body = upload_file(imageFile), headers)
 results <- fromJSON(content(resp, as="text", flatten = FALSE))
 
-htmlFile <- "ocr_output.html"
+htmlFile <- "output_ocr.html"
 if(file.exists(htmlFile)) file.remove(htmlFile)
 fileConn <- file(htmlFile, open = 'a')
 writeLines(sprintf("<img src='%s' style='position:absolute;top:0;left:0'/>", imageFile), fileConn)
