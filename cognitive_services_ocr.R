@@ -16,16 +16,15 @@ headers = add_headers(c(
   "Ocp-Apim-Subscription-Key" = computer_vision$key
 ))
 
-imageFile <- "files/road_sign.jpg"
 imageFile <- "files/invoice.jpg"
 resp <- POST(paste0(computer_vision$endpoint, "/ocr"), body = upload_file(imageFile), headers)
 results <- fromJSON(content(resp, as="text", flatten = FALSE))
 
-closeAllConnections()
-htmlFile <- "output.html"
+htmlFile <- "ocr_output.html"
 if(file.exists(htmlFile)) file.remove(htmlFile)
 fileConn <- file(htmlFile, open = 'a')
 writeLines(sprintf("<img src='%s' style='position:absolute;top:0;left:0'/>", imageFile), fileConn)
+
 for(i in 1:nrow(results$regions)) {
   p <- strtoi(strsplit(results$regions[i,]$boundingBox, split = ',')[[1]])
   margin <- 4
